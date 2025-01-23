@@ -1,13 +1,13 @@
 # Active-Directory-Lab-using-Oracle-VirtualBox
 
-![AltText](ad.png)
+![AltText](images/ad.png)
 
 
 In this lab, I set up an Active Directory environment using Oracle VirtualBox, including a domain controller and virtual network. PowerShell scripts were used to automate user creation and management. This project was focused around learning AD configuration, automation, and system administration.
 
 # Overview
 
-![AltText](diagram.png)
+![AltText](images/diagram.png)
 
 
 
@@ -25,13 +25,13 @@ In this lab, I set up an Active Directory environment using Oracle VirtualBox, i
 # Environment Setup
 
 ## 1. VirtualBox Setup
-![AltText](vm_manager.png)
+![AltText](images/vm_manager.png)
 - Create two virtual machines (VMs) in VirtualBox:
   - One VM is configured as **Server 2019** for the domain controller (DC).
   - One VM is configured as **Windows 10** for the client machine.
 
 ## 2. Networking Configuration
-![AltText](diagram_nic.png)
+![AltText](images/diagram_nic.png)
 - **NIC 1** (for internet connection):
   - Set to obtain an IP address automatically via DHCP from the home router.
 - **NIC 2** (for internal network):
@@ -41,28 +41,28 @@ In this lab, I set up an Active Directory environment using Oracle VirtualBox, i
     - **Default Gateway**: Leave blank
     - **DNS**: `127.0.0.1`
   
-![AltText](nic_internal.png)
-![AltText](nic_config.png)
+![AltText](images/nic_internal.png)
+![AltText](images/nic_config.png)
 
 ## 3. Domain Controller Configuration
-![AltText](ad_domain_diagram.png)
+![AltText](images/ad_domain_diagram.png)
 - Install **Active Directory Domain Services (AD DS)** on Server 2019.
 - Configure the domain with the Fully Qualified Domain Name (FQDN): `mydomain.com`.
 
-![AltText](domain.png)
+![AltText](images/domain.png)
 
 ## 4. RAS/NAT (Routing)
-![AltText](routing_diagram.png)
+![AltText](images/routing_diagram.png)
 - Install the **Remote Access Service (RAS)** role on the domain controller to enable NAT.
 - Configure NAT to allow internet access for devices on the internal network:
   1. Open the **Routing and Remote Access** console.
   2. Configure NAT for **NIC 1** (external interface connected to the internet).
   3. Verify that the internal network (connected via **NIC 2**) can access the internet through the NAT configuration.
 
-![AltText](routing.png)
+![AltText](images/routing.png)
 
 ## 5. DHCP
-![AltText](dhcp_diagram.png)
+![AltText](images/dhcp_diagram.png)
 - Installed and configured the **DHCP Server** role on the domain controller.
 - Set up a DHCP scope to assign IP addresses dynamically to devices on the internal network:
   - **IP Range**: `172.16.0.100 - 172.16.0.200`
@@ -71,17 +71,17 @@ In this lab, I set up an Active Directory environment using Oracle VirtualBox, i
   - **DNS Server**: `172.16.0.1`
 - Verified that the Windows 10 client successfully received an IP address and could communicate with the domain controller and access the internet via NAT.
   
-![AltText](dhcp.png)
+![AltText](images/dhcp.png)
 
 ## 6. Add 1000 users via. Powershell script
 The script utilizes a txt file of first and last names in alphabetical order. The txt file is stored in the same directory as the script.
 
-![AltText](names.png)
+![AltText](images/names.png)
 
 ### Powershell script
 Below is the PowerShell script used to create users:
 
-![AltText](powershell_script.png)
+![AltText](images/powershell_script.png)
 
 ### Explanation of the Script
 **Input**: The script reads names.txt to fetch names and creates corresponding users.
@@ -99,7 +99,7 @@ Below is the PowerShell script used to create users:
 
 ### Output
 Below we can see all of the users in "_USERS" within Active Directory Users and Computers:
-![AltText](users.png)
+![AltText](images/users.png)
 
 ## 6. Creating Client & Interacting with the Domain Controller
 - **Install Windows 10 on the Client VM**: Install Windows 10 on the Client VM: After creating the Client VM in Oracle VirtualBox, I installed the Windows 10 ISO to set up the operating system.
@@ -108,13 +108,13 @@ Below we can see all of the users in "_USERS" within Active Directory Users and 
 - **Configure Networking**: To enable the Client VM to communicate with the Domain Controller and obtain an IP address from the DHCP server, I configured the network adapter of the Client VM to use the Internal Network.
 
 
-![AltText](client_settings.png)
+![AltText](images/client_settings.png)
 
 
 - **Test Network Configuration**: After starting the Client VM and logging in, I verified the network settings using the ipconfig command in the terminal. The screenshot below shows the network configuration, confirming that the Client VM received an IP address (172.16.0.100) from the DHCP server.
 
 
-![AltText](terminal.png)
+![AltText](images/terminal.png)
 
 
 # Outcomes
