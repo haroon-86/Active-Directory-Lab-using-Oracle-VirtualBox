@@ -71,10 +71,12 @@ In this lab, I set up an Active Directory environment using Oracle VirtualBox, i
 
 ## 6. Add 1000 users via. Powershell script
 The script utilizes a txt file of first and last names in alphabetical order. The txt file is stored in the same directory as the script.
+
 ![AltText](names.png)
 
 ### Powershell script
 Below is the PowerShell script used to create users:
+
 ![AltText](powershell_script.png)
 
 ### Explanation of the Script
@@ -95,3 +97,11 @@ Below is the PowerShell script used to create users:
 Below we can see all of the users in "_USERS" within Active Directory Users and Computers:
 ![AltText](users.png)
 
+## 6. Creating Client & Interacting with the Domain Controller
+After creating the Client VM and installing the Win10 ISO on it, we can then test the connection to our Domain Controller. But before that, we need to configure the client vm to utilize an internal network in order to receive an IP address from our DHCP server and fulfill the purpose of the lab.
+
+![AltText](client_settings.png)
+
+Now we can test our environment setup by logging in as one of our users, and running "ipconfig" in the client's command terminal:
+
+![AltText](terminal.png)
