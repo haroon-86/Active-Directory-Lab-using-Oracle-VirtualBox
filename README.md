@@ -98,10 +98,26 @@ Below we can see all of the users in "_USERS" within Active Directory Users and 
 ![AltText](users.png)
 
 ## 6. Creating Client & Interacting with the Domain Controller
-After creating the Client VM and installing the Win10 ISO on it, we can then test the connection to our Domain Controller. But before that, we need to configure the client vm to utilize an internal network in order to receive an IP address from our DHCP server and fulfill the purpose of the lab.
+- **Install Windows 10 on the Client VM**: Install Windows 10 on the Client VM: After creating the Client VM in Oracle VirtualBox, I installed the Windows 10 ISO to set up the operating system.
+
+
+- **Configure Networking**: To enable the Client VM to communicate with the Domain Controller and obtain an IP address from the DHCP server, I configured the network adapter of the Client VM to use the Internal Network.
+
 
 ![AltText](client_settings.png)
 
-Now we can test our environment setup by logging in as one of our users, and running "ipconfig" in the client's command terminal:
+
+- **Test Network Configuration**: After starting the Client VM and logging in, I verified the network settings using the ipconfig command in the terminal. The screenshot below shows the network configuration, confirming that the Client VM received an IP address (172.16.0.100) from the DHCP server.
+
 
 ![AltText](terminal.png)
+
+
+# Outcomes
+- Through this lab, I gained practical experience with Active Directory, including setting up and configuring a Domain Controller to manage network resources effectively.
+
+- I successfully created and implemented 1,000 users in Active Directory using a PowerShell script, which enhanced my understanding of user management and automation within a domain environment.
+
+- I learned how to configure a Domain Controller, enabling it to serve as the central authentication and authorization point in a networked environment.
+
+- I configured and tested a DHCP server, ensuring client machines could receive IP addresses dynamically.
